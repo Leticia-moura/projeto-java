@@ -34,4 +34,11 @@ public class ItemDePedido {
 	public String toString() {
 		return "ItemDePedido [qtde=" + qtde + ", subtotal=" + subtotal + "]";
 	}
+	public void mostrar(){
+		//Mostrar usuário
+		System.out.println("\n\nItem de pedido:\n");
+		System.out.println("qtde: " +this.qtde  );
+		System.out.println("subtotal: " +this.subtotal );
+	
+	}
 }

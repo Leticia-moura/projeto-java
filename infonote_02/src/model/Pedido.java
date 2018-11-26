@@ -65,5 +65,13 @@ public String toString() {
 	return "Pedido [numero=" + numero + ", dataEmissao=" + dataEmissao + ", formaDePagamento=" + formaDePagamento
 			+ ", valorTotal=" + valorTotal + ", situacao=" + situacao + "]";
 }
-
+public void mostrar(){
+	System.out.println("\n\nPedido:\n");
+	System.out.println("Número: " + this.numero);
+	System.out.println("Data da emissao: " + this.dataEmissao);
+	System.out.println("Forma de pagamento: " + this.formaDePagamento);
+	System.out.println("situacao: " + this.situacao);
+	System.out.println("Valor Total: " + this.valorTotal);
+	
+}
 }

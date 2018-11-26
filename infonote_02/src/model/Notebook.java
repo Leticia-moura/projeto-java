@@ -104,4 +104,15 @@ public class Notebook {
 				+ estoque + ", precoUnitario=" + precoUnitario + ", figura=" + figura + ", dataCadastro=" + dataCadastro
 				+ "]";
 	}
+	public void mostrar(){
+	System.out.println("\n\nNotebook:\n");
+	System.out.println("figura: " + this.figura);
+	System.out.println("descricao: " + this.descricao);
+	System.out.println("modelo: " +this.modelo );
+	System.out.println("precoUnitario: " + this.precoUnitario);
+	System.out.println("numeroNote: " + this.numeroNote);
+	System.out.println("estoque: " + this.estoque);
+	System.out.println("dataCadastro: " + this.dataCadastro);
+	 
+	}
 }

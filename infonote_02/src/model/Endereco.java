@@ -88,4 +88,18 @@ public class Endereco {
 				+ ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", cep=" + cep + "]";
 	}
 
+	public void mostrar(){
+		//Mostrar usuário
+		System.out.println("\n\nEndereço:\n");
+		System.out.println("logradouro: " + this.logradouro);
+		System.out.println("numero: " +this.numero );
+		System.out.println("complemento: " +this.complemento );
+		System.out.println("bairro: " + this.bairro);
+		System.out.println("cidade: " +this.cidade );
+		System.out.println("estado: " +this.estado );
+		System.out.println("cep: " +this.cep );
+		
+		
+	}
+	
 }
