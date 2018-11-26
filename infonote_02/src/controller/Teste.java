@@ -5,8 +5,7 @@ public class Teste {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Usuario user = new Usuario("5611428","jorge.sousa","jorge sousa","jorge@g,ail.com","5555200",1234);
-	
+		
 		//Usuario user= new Usuario();
 		//user.setNome("Jorge Sousa");
 		//user.setEmail("jorge@gmail.com");
@@ -16,9 +15,7 @@ public class Teste {
 		//user.setSenha("5611428");
 		//System.out.println(user.toString());
 		
-		System.out.println("   ");
-		
-		Endereco end = new Endereco("maria amalia","26","apt 301","tijuca","RJ","RJ","20510000");
+		//System.out.println("   ");
 		
 		//Endereco end= new Endereco();
 		//end.setEstado("RJ");
@@ -30,9 +27,7 @@ public class Teste {
 		//end.setCep("20510000");
 		//System.out.println(end.toString());
 		
-		System.out.println("   ");
-		
-		Notebook note1 = new Notebook(521647,"2018.0","modelo novo do ano",56,2500,"foto_note1","21/06/2018");
+		//System.out.println("   ");
 		
 		//Notebook note1= new Notebook();
 		//note1.setDataCadastro("21/06/2018");
@@ -44,9 +39,7 @@ public class Teste {
 		//note1.setPrecoUnitario(2500);
 		//System.out.println(note1.toString());
 		
-		System.out.println("   ");
-		
-		Notebook note2 = new Notebook(2654,"2017.5","modelo do ano passado",20,1400,"foto_note2","03/10/2018");	
+		//System.out.println("   ");
 		
 		//Notebook note2= new Notebook();
 		//note2.setDataCadastro("03/10/2018");
@@ -58,9 +51,7 @@ public class Teste {
 		//note2.setPrecoUnitario(1400);
 		//System.out.println(note2.toString());
 		
-		System.out.println("   ");
-		
-		Notebook note3 = new Notebook(1518,"2019.1","modelo novo do próximo ano",100,3800,"foto_note3","31/12/2018");
+		//System.out.println("   ");
 		
 		//Notebook note3= new Notebook();
 		//note3.setDataCadastro("31/12/2018");
@@ -72,10 +63,8 @@ public class Teste {
 		//note3.setPrecoUnitario(3800);
 		//System.out.println(note3.toString());
 		
-		System.out.println("   ");
+		//System.out.println("   ");
 	
-		Pedido ped= new Pedido( 588,"23/11/2018","boleto",2789,"situacao");
-		
 		//Pedido ped= new Pedido();
 		//ped.setDataEmissao("23/11/2018");
 		//ped.setFormaDePagamento("boleto");
@@ -84,24 +73,37 @@ public class Teste {
 		//ped.setValorTotal(2789);
 		//System.out.println(ped.toString());
 		
-		System.out.println("   ");
-		
-		ItemDePedido Idp1 = new ItemDePedido(2 , 22.98 );
+		//System.out.println("   ");
 		
 		//ItemDePedido Idp1 = new ItemDePedido ();
 		//Idp1.setQtde(2);
 		//Idp1.setSubtotal(22.98);
 		//System.out.println(Idp1.toString());
 		
-		System.out.println("   ");
-		
-		ItemDePedido Idp2 = new ItemDePedido(1, 98.75 );
+		//System.out.println("   ");
 		
 		//ItemDePedido Idp2 = new ItemDePedido ();
 		//Idp1.setQtde(1);
 		//Idp1.setSubtotal(98.75);
 		//System.out.println(Idp2.toString());
 		
+		//System.out.println("   ");
+		
+		Usuario user = new Usuario("5611428","jorge.sousa","jorge sousa","jorge@g,ail.com","5555200",1234);
+		System.out.println("   ");
+		Endereco end = new Endereco("maria amalia","26","apt 301","tijuca","RJ","RJ","20510000");
+		System.out.println("   ");
+		Notebook note1 = new Notebook(521647,"2018.0","modelo novo do ano",56,2500,"foto_note1","21/06/2018");
+		System.out.println("   ");
+		Notebook note2 = new Notebook(2654,"2017.5","modelo do ano passado",20,1400,"foto_note2","03/10/2018");	
+		System.out.println("   ");
+		Notebook note3 = new Notebook(1518,"2019.1","modelo novo do próximo ano",100,3800,"foto_note3","31/12/2018");
+		System.out.println("   ");
+		Pedido ped= new Pedido( 588,"23/11/2018","boleto",2789,"situacao");
+		System.out.println("   ");
+		ItemDePedido Idp1 = new ItemDePedido(2 , 22.98 );
+		System.out.println("   ");
+		ItemDePedido Idp2 = new ItemDePedido(1, 98.75 );
 		System.out.println("   ");
 		
 		user.mostrar();
