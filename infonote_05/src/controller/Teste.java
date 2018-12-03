@@ -101,9 +101,9 @@ public class Teste {
 		System.out.println("   ");
 		Pedido ped= new Pedido( 588,"23/11/2018","boleto",2789,"situacao");
 		System.out.println("   ");
-		ItemDePedido Idp1 = new ItemDePedido(2 , 22.98 );
+		ItemDePedido Idp1 = new ItemDePedido(2 , 22.98, );
 		System.out.println("   ");
-		ItemDePedido Idp2 = new ItemDePedido(1, 98.75 );
+		ItemDePedido Idp2 = new ItemDePedido(1, 98.75, );
 		System.out.println("   ");
 		
 		user.mostrar();

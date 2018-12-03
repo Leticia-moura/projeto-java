@@ -7,29 +7,33 @@ import util.teclado;
 public class InfoNote {
 
 	
-		Usuario user;
+//		Cliente user1;
+	    Usuario user1;
+	    
+	    Usuario user2;
 		
 		Notebook[] notebooks= new Notebook[10];
 		
 		Pedido pedido;
 		
+		
 		boolean logado = false;
 
 	
 public InfoNote() {
-	notebooks[0] = new Notebook(1, "Negativo N22BR",
+	notebooks[0] = new Notebook(1,"note", "Negativo N22BR",
 			"CPU Intel Core 2 Duo, Memória 2 GB, HD 250 GB",6 ,1200.00,
 			"img\\n22br.jpg","19/05/2011");
-	notebooks[1] = new Notebook(2, "Negativo N22BR",
+	notebooks[1] = new Notebook(2,"note", "Negativo N22BR",
 			"CPU Intel Core 2 Duo, Memória 2 GB, HD 250 GB",4 ,1200.00,
 			"img\\n22br.jpg","19/05/2011");
-	notebooks[2] = new Notebook(3, "Negativo N22BR",
+	notebooks[2] = new Notebook(3,"note", "Negativo N22BR",
 			"CPU Intel Core 2 Duo, Memória 2 GB, HD 250 GB",10 ,1200.00,
 			"img\\n22br.jpg","19/05/2011");
-	notebooks[3] = new Notebook(4, "Negativo N22BR",
+	notebooks[3] = new Notebook(4,"note", "Negativo N22BR",
 			"CPU Intel Core 2 Duo, Memória 2 GB, HD 250 GB",25,1200.00,
 			"img\\n22br.jpg","19/05/2011");
-	notebooks[4] = new Notebook(5, "Negativo N22BR",
+	notebooks[4] = new Notebook(5,"note", "Negativo N22BR",
 			"CPU Intel Core 2 Duo, Memória 2 GB, HD 250 GB",61,1200.00,
 			"img\\n22br.jpg","19/05/2011");
 	
@@ -52,7 +56,7 @@ public void mostrarMenu() {
 	
 }
 
-public void efetuarLogin () {
+public void efetuarLoginCliente () {
 	 String login, senha;
 	 login = teclado.lerTexto("Digite o login: "); 
 	 senha = teclado.lerTexto("Digite a senha: ");
@@ -62,29 +66,70 @@ public void efetuarLogin () {
 		 logado = true;
 	 }else {
 		 System.out.println("Login ou senha inválido.");
-		 efetuarLogin();
+		 efetuarLoginCliente();
 	 
 	 }
 }
-public void cadastrarUsuario(){
+public void efetuarLoginFuncionario () {
+	 String login, senha;
+	 login = teclado.lerTexto("Digite o login: "); 
+	 senha = teclado.lerTexto("Digite a senha: ");
+	 
+	 if (login.equals("admin") && senha.equals("1234")) {
+		 System.out.println("Login efetuado com sucesso.");
+		 logado = true;
+	 }else {
+		 System.out.println("Login ou senha inválido.");
+		 efetuarLoginFuncionario();
+	 
+	 }
+}
+public void cadastrarUsuarioCliente(){
 
 	System.out.println("=================================================");
 	System.out.println(" InfoNote - Cadastro de Usuários. ");
 	System.out.println("=================================================");
 
-	int matricula = teclado.lerInt("Matrícula: ");
 	String login = teclado.lerTexto("Login: ");
 	String senha = teclado.lerTexto("Senha: ");
 	String nome = teclado.lerTexto("Nome: ");
 	String email = teclado.lerTexto("E-mail: ");
 	String telefone = teclado.lerTexto("Telefone: ");
-	user = new Usuario(senha, login, nome, email, telefone,  matricula);
-
+	String codigoCliente = teclado.lerTexto("codigoCliente: ");
+	 String logradouro= teclado.lerTexto("logradouro: ");
+	 String numero=teclado.lerTexto("numero: ");
+	 String complemento=teclado.lerTexto("complemento: ");
+	 String bairro=teclado.lerTexto("bairro: ");
+	 String cidade=teclado.lerTexto("cidade: ");
+	 String estado=teclado.lerTexto("estado: ");
+	 String cep=teclado.lerTexto("cep: ");
+	int tipo=1;
+	Endereco enderecos = new Enderecos ( logradouro, numero, complemento, bairro, cidade,estado, cep);
+	user1 = new Usuario(senha,  login,  tipo, nome, email,  telefone,  enderecos, pedidos,codigoCliente);
+	
 	System.out.println("=================================================");
 	System.out.println(" Usuário Cadastrado Com Sucesso. ");
 	System.out.println("=================================================");
-	System.out.println(user);
+	System.out.println(user1);
 }
+public void cadastrarUsuarioFuncionario(){
+
+	System.out.println("=================================================");
+	System.out.println(" InfoNote - Cadastro de Usuários. ");
+	System.out.println("=================================================");
+
+	String matricula = teclado.lerTexto("Matrícula: ");
+	String login = teclado.lerTexto("Login: ");
+	String senha = teclado.lerTexto("Senha: ");
+	int tipo=2;
+	user2 = new Usuario( senha,  login,  tipo, matricula);
+	
+	System.out.println("=================================================");
+	System.out.println(" Usuário Cadastrado Com Sucesso. ");
+	System.out.println("=================================================");
+	System.out.println(user2);
+}
+
 public void buscarNotebook() {
 
 	for (int i = 0; i < notebooks.length; i++){
@@ -131,6 +176,22 @@ public void efetuarCompra() {
 
 	System.out.println("efetuarCompra - Em Construção");
 }
+//public void mostrarMenu() {
+//	
+//	System.out.println("=================================================");
+//	System.out.println(" InfoNote - Se não é Info não vendemos. ");
+//	System.out.println("=================================================");
+//	System.out.println("1 - Login");
+//	System.out.println("2 - Cadastrar Cliente");
+//	System.out.println("3 - Buscar Notebook");
+//	System.out.println("4 - Inserir Notebook no carrinho");
+//	System.out.println("5 - Remover Notebook no carrinho");
+//	System.out.println("6 - Ver Carrinho");
+//	System.out.println("7 - Efetuar Compra");
+//	System.out.println("8 - Sair");
+//
+//	
+//}
 
 public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -143,24 +204,50 @@ public static void main(String[] args) {
 	
 	switch (opcao) {
 	case 1 :
-		info.efetuarLogin();
+		System.out.println("Qual seu tipo de Usuário?");
+		System.out.println("1-Cliente");
+		System.out.println("2-Funcionário");
+		if(tipo=1){
+		info.efetuarLoginCliente();
 		break;
+		}else {
+			info.efetuarLoginFuncionario();
+		break;
+		}
+		
 	case 2 :
-		info.cadastrarUsuario();
+		System.out.println("Qual seu tipo de Usuário?");
+		System.out.println("1-Cliente");
+		System.out.println("2-Funcionário");
+		if(tipo=1){
+		info.cadastrarUsuarioCliente();
 		break;
-	case 3:
-		info.buscarNotebook();
+		}else {
+	info.cadastrarUsuarioFuncionario();
+		break;
+		}
+//	case 1 :
+//		info.efetuarLogin();
+//		break;
+//	case 2 :
+//		info.cadastrarUsuario();
+//		break;
+	case 3 :
+		info.cadastrarCliente();
 		break;
 	case 4:
-		info.manterCarrinho();
-		break;	
+		info.buscarNotebook();
+		break;
 	case 5:
 		info.manterCarrinho();
-		break;
+		break;	
 	case 6:
 		info.manterCarrinho();
 		break;
 	case 7:
+		info.manterCarrinho();
+		break;
+	case 8:
 		if (!info.logado) {
 			System.out.println("Efetue login para efetuar compra.");
 				break;
@@ -168,7 +255,7 @@ public static void main(String[] args) {
 			info.efetuarCompra();
 			break;
 		}
-	case 8:
+	case 9:
 		System.out.println("Saída do Sistema");
 		break;
 		
@@ -176,7 +263,7 @@ public static void main(String[] args) {
 			System.out.println("Opção inválida!");
 	}
 	
-}while(opcao!=8);
+}while(opcao!=9);
 	
 	teclado.lerTexto("Pressione uma tecla para continuar...");
 
