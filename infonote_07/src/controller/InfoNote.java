@@ -212,7 +212,7 @@ public static void main(String[] args) {
 	switch (opcao) {
 	case 1 :
 				
-		int tipoLogin = teclado.lerInt("Qual seu tipo de Usuário?: "+"\n"+"1-Cliente"+" \n"+"2-Funcionário");
+		int tipoLogin = teclado.lerInt("Qual seu tipo de Usuário?: "+"\\n"+"1-Cliente"+" \\n"+"2-Funcionário");
 		if(tipoLogin==1){
 		info.efetuarLoginCliente();
 		break;
