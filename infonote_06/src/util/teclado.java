@@ -27,8 +27,22 @@ public class teclado {
 
 	}
 
-public static double lerDouble(String texto) {
+public static double lerDouble(String i) {
 	 
-	 return Double.parseDouble(lerTexto(texto));
+	 return Double.parseDouble(lerTexto(i));
 	}
+
+
+
+public static double lerDouble(int i) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+
+
+//public static double lerDouble(int i) {
+//	// TODO Auto-generated method stub
+//	return 0;
+//}
 }

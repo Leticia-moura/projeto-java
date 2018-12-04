@@ -7,7 +7,7 @@ public class Cliente extends Usuario {
 	private String email;
 	private String telefone;
 	private Endereco enderecos[] = new Endereco[10];
-	Endereco endereco;
+	static Endereco endereco;
 	private Pedido pedidos[] = new Pedido[10];
 	private String codigoCliente;
 	public String getCodigoCliente() {
@@ -51,7 +51,7 @@ public class Cliente extends Usuario {
 	}
 	public Cliente(String senha, String login, int tipo,String nome, String email, String telefone, Endereco[] enderecos, Pedido[] pedidos,
 			String codigoCliente) {
-		super(senha, login, tipo);
+		super(senha, login, tipo, codigoCliente,  codigoCliente, codigoCliente, endereco, null, codigoCliente);
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;

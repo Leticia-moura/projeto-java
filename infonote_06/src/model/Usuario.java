@@ -103,7 +103,7 @@ public class Usuario {
 				+ ", getSenha()=" + getSenha() + ", getLogin()=" + getLogin() + "]";
 	}
 
-	public Usuario(String senha, String login,int tipo) {
+	public Usuario(String senha, String login,int tipo, String nome, String email, String telefone, Endereco enderecos, Pedido pedidos, String codigoCliente) {
 		super();
 		this.senha = senha;
 		this.login = login;
