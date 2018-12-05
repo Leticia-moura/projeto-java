@@ -8,9 +8,9 @@ public class InfoNote {
 
 	
 //		
-	    Usuario user1;
+	    Cliente user1;
 	    
-	    Usuario user2;
+	   Funcionario user2;
 		
 		Notebook[] notebooks= new Notebook[10];
 		
@@ -112,7 +112,7 @@ public void cadastrarUsuarioCliente(){
 	 
 	Endereco enderecos = new Endereco ( logradouro, numero, complemento, bairro, cidade,estado, cep);
 	Pedido pedidos = new Pedido (numeroPedido, dataEmissao,formaDePagamento,valorTotal,situacao, enderecos);
-	 user1 = new Usuario (senha,  login,  tipo, nome, email,  telefone,  enderecos, pedidos,codigoCliente);
+	Cliente user1 = new Cliente (senha,  login,  tipo, nome, email,  telefone,  enderecos, pedidos,codigoCliente);
 	
 	System.out.println("=================================================");
 	System.out.println(" Usuário Cadastrado Com Sucesso. ");
@@ -129,7 +129,7 @@ public void cadastrarUsuarioCliente(){
 //	String login = teclado.lerTexto("Login: ");
 //	String senha = teclado.lerTexto("Senha: ");
 //	int tipo=2;
-//	//user2 = new Usuario( senha,  login,  tipo, matricula);
+//	//user2 = new Funcionario( senha,  login,  tipo, matricula);
 //	
 //	System.out.println("=================================================");
 //	System.out.println(" Usuário Cadastrado Com Sucesso. ");

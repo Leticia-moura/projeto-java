@@ -103,11 +103,11 @@ public abstract class Usuario {
 				+ ", getSenha()=" + getSenha() + ", getLogin()=" + getLogin() + "]";
 	}
 
-	public Usuario(String senha, String login,int tipo, String nome, String email, String telefone, Endereco enderecos, Pedido pedidos, String codigoCliente) {
+	public Usuario(String senha, String login,int tipo) {
 		super();
 		this.senha = senha;
 		this.login = login;
-		
+		this.tipo= tipo;
 	}
 
 //	public boolean inserirPedido(Pedido pedido){

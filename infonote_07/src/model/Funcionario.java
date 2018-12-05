@@ -16,7 +16,7 @@ public class Funcionario extends Usuario {
 	}
 
 	public Funcionario(String senha, String login, int tipo,String matricula) {
-		super(senha, login, tipo, matricula, matricula, matricula, null, null, matricula);
+		super(senha, login, tipo);
 		this.matricula = matricula;
 	}
 

@@ -7,7 +7,7 @@ public class Cliente extends Usuario {
 	private String email;
 	private String telefone;
 	private Endereco enderecos[] = new Endereco[10];
-	static Endereco endereco;
+	 Endereco endereco;
 	private Pedido pedidos[] = new Pedido[10];
 	private String codigoCliente;
 	public String getCodigoCliente() {
@@ -51,7 +51,7 @@ public class Cliente extends Usuario {
 	}
 	public Cliente(String senha, String login, int tipo,String nome, String email, String telefone, Endereco[] enderecos, Pedido[] pedidos,
 			String codigoCliente) {
-		super(senha, login, tipo, codigoCliente,  codigoCliente, codigoCliente, endereco, null, codigoCliente);
+		super(senha, login, tipo);
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;
@@ -62,6 +62,11 @@ public class Cliente extends Usuario {
 		inserirEndereco(endereco);
 	}
 	
+	
+	public Cliente(String senha, String login, int tipo, String nome2, String email2, String telefone2,
+			Endereco enderecos2, Pedido pedidos2, String codigoCliente2) {
+		// TODO Auto-generated constructor stub
+	}
 	public boolean inserirPedido(Pedido pedido){
 		for (int i = 0; i < pedidos.length; i++){
 		if (pedidos[i] == null){
@@ -69,6 +74,8 @@ public class Cliente extends Usuario {
 		return true;
 	}
 
+		
+		
 		}
 		return false;
 		
