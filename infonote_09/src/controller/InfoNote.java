@@ -1,7 +1,8 @@
 package controller;
 
 import model.*;
-import util.teclado;
+import util.*;
+
 
 
 public class InfoNote {
@@ -44,6 +45,9 @@ public void mostrarMenu() {
 	
 	System.out.println("=================================================");
 	System.out.println(" InfoNote - Se não é Info não vendemos. ");
+	if (logado == true) {
+		System.out.println("Seja bem vindo, "+ clienteGlobal.getNomeInvertido());
+	}
 	System.out.println("=================================================");
 	System.out.println("1 - Login");
 	System.out.println("2 - Cadastrar Usuário");
@@ -98,6 +102,10 @@ public void cadastrarUsuarioCliente(){
 
 	String login = teclado.lerTexto("Login: ");
 	String senha = teclado.lerTexto("Senha: ");
+	if (senha.equals("") || senha == null){
+		senha = GerarSenha.gerarSenha();
+		System.out.println("Senha gerada: " + senha);
+		}
 	String nome = teclado.lerTexto("Nome: ");
 	String email = teclado.lerTexto("E-mail: ");
 	String telefone = teclado.lerTexto("Telefone: ");
@@ -135,6 +143,10 @@ public void cadastrarUsuarioFuncionario(){
 	String matricula = teclado.lerTexto("Matrícula: ");
 	String login = teclado.lerTexto("Login: ");
 	String senha = teclado.lerTexto("Senha: ");
+	if (senha.equals("") || senha == null){
+		senha = GerarSenha.gerarSenha();
+		System.out.println("Senha gerada: " + senha);
+		}
 	int tipo=2;
 	user2 = new Funcionario( senha,  login,  tipo, matricula);
 	funcionarioGlobal = user2;
