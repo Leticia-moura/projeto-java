@@ -27,11 +27,10 @@ public class InfoNote {
 	Configurador config;
 	Ajuda ajuda;
 
-	private static Cliente clienteGlobal = null;
-	private static Funcionario funcionarioGlobal = null;
+	private static Funcionario funcionario = null;
 	private static final int login = 1;
 	private static final int cadastrar_usuario = 2;
-	private static final int buscar_usuario = 3;
+	private static final int buscar_notebook = 3;
 	private static final int inserir_notebook = 4;
 	private static final int remover_notebook = 5;
 	private static final int ver_carrinho = 6;
@@ -48,9 +47,8 @@ public class InfoNote {
 
 	}
 
-	public void ajuda() {
-		System.out.println(ajuda.getTexto());
-	}
+	
+	
 
 	public void mostrarMenu() {
 
@@ -60,7 +58,7 @@ public class InfoNote {
 				+ DateFormat.getTimeInstance().format(new Date()));
 
 		if (logado == true) {
-			System.out.println("Seja bem vindo, " + clienteGlobal.getNomeInvertido());
+			System.out.println("Seja bem vindo, " + usuario);
 		}
 		System.out.println("=================================================");
 		System.out.println("1 - Login");
@@ -81,17 +79,16 @@ public class InfoNote {
 		login = teclado.lerTexto("Digite o login: ");
 		senha = teclado.lerTexto("Digite a senha: ");
 
-		clienteGlobal = ClienteDAO.buscarPorLoginSenha(login, senha);
+		usuario = ClienteDAO.buscarPorLoginSenha(login, senha);
 
-		if (clienteGlobal != null) {
-			logado = clienteGlobal.validarLogin(login, senha);
-		} else {
-			if (logado) {
-				System.out.println("Login efetuado com sucesso.");
-
+		if (usuario != null) {
+			logado = usuario.validarLogin(login, senha);
+					System.out.println("Login efetuado com sucesso.");
+			
 			} else {
 				System.out.println("Login ou senha inválido.");
 				int opcao2 = 3;
+				
 				do {
 					System.out.println("Digite:");
 					System.out.println("1 - Para efetuar Login");
@@ -114,16 +111,16 @@ public class InfoNote {
 				} while (!logado);
 			}
 		}
-	}
+	
 
 	public void efetuarLoginadm() {
 		String login, senha;
 		login = teclado.lerTexto("Digite o login: ");
 		senha = teclado.lerTexto("Digite a senha: ");
-		funcionarioGlobal = FuncionarioDAO.buscarPorLoginSenha(login, senha);
+		funcionario = FuncionarioDAO.buscarPorLoginSenha(login, senha);
 
-		if (funcionarioGlobal != null) {
-			logado = funcionarioGlobal.validarLogin(login, senha);
+		if (funcionario != null) {
+			logado = funcionario.validarLogin(login, senha);
 		}else {
 			if (logado) {
 				System.out.println("Login efetuado com sucesso.");
@@ -135,6 +132,10 @@ public class InfoNote {
 		}
 	}
 
+	
+	public void ajuda() {
+		System.out.println(ajuda.getTexto());
+	}
 	public void cadastrarUsuarioCliente() {
 
 		System.out.println("=================================================");
@@ -159,29 +160,17 @@ public class InfoNote {
 		String estado = teclado.lerTexto("estado: ");
 		String cep = teclado.lerTexto("cep: ");
 		int tipo = 0;
-		String numeroPedido = teclado.lerTexto("numeroPedido");
-		String dataEmissao = teclado.lerTexto("dataEmissao: ");
-		String formaDePagamento = teclado.lerTexto("formaDePagamento : ");
-		double valorTotal = teclado.lerDouble(2500);
-		String situacao = teclado.lerTexto("situacao: ");
 
 		usuario = UsuarioDAO.inserir(login, senha, tipo);
 		user1 = ClienteDAO.inserir(login, senha, tipo, codigoCliente, nome, email, telefone);
 		Endereco endereco = EnderecoDAO.inserir(logradouro, numero, complemento, bairro, cidade, estado, cep,
 				codigoCliente);
-
-		// Endereco enderecos = new Endereco ( logradouro, numero, complemento, bairro,
-		// cidade,estado, cep);
-		// Pedido pedidos = new Pedido (numeroPedido,
-		// dataEmissao,formaDePagamento,valorTotal,situacao, enderecos);
-		// Cliente user1 = new Cliente (senha, login, tipo, nome, email, telefone,
-		// enderecos, pedidos,codigoCliente);
-		clienteGlobal = user1;
+		usuario = user1;
 
 		System.out.println("=================================================");
 		System.out.println(" Usuário Cadastrado Com Sucesso. ");
 		System.out.println("=================================================");
-		System.out.println(user1);
+		System.out.println(usuario);
 		System.out.println(endereco);
 	}
 
@@ -198,15 +187,27 @@ public class InfoNote {
 			senha = GerarSenha.gerarSenha();
 			System.out.println("Senha gerada: " + senha);
 		}
-		int tipo = 2;
+		int tipo = 1;
 		user2 = new Funcionario(senha, login, tipo, matricula);
-		funcionarioGlobal = user2;
+		funcionario = user2;
 		System.out.println("=================================================");
 		System.out.println(" Usuário Cadastrado Com Sucesso. ");
 		System.out.println("=================================================");
 		System.out.println(user2);
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public void buscarNotebook() {
 
 		for (int i = 0; i < notebooks.length; i++) {
@@ -343,7 +344,7 @@ public class InfoNote {
 				// break;
 				// }
 
-			case buscar_usuario:
+			case buscar_notebook:
 				info.buscarNotebook();
 				break;
 			case inserir_notebook:

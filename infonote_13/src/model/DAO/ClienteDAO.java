@@ -23,7 +23,7 @@ public class ClienteDAO {
 
 	public static Cliente inserir(String login, String senha, int tipo, String codigoCliente, String nome, String email,
 			String telefone) {
-		Cliente cliente = null;
+		Cliente user1 = null;
 		ClienteDAO cliDAO = new ClienteDAO();
 		try {
 
@@ -45,12 +45,12 @@ public class ClienteDAO {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		cliente = new Cliente(login, senha, tipo, codigoCliente, nome, email, telefone);
-		return cliente;
+		user1 = new Cliente(login, senha, tipo, codigoCliente, nome, email, telefone);
+		return user1;
 	}
 
 	public static Cliente buscarPorLoginSenha(String login, String senha) {
-		Cliente cliente = null;
+		Cliente user1 = null;
 		ClienteDAO cliDAO = new ClienteDAO();
 		try {
 			String sql = "Select * from usuario u, cliente c " + "where u.login=c.fklogin and u.login = ? "
@@ -62,7 +62,7 @@ public class ClienteDAO {
 			comando.setString(2, senha);
 			ResultSet rs = comando.executeQuery();
 			if (rs.next()) {
-				cliente = new Cliente(rs.getString("login"), rs.getString("senha"), rs.getInt("tipo"),
+				user1 = new Cliente(rs.getString("login"), rs.getString("senha"), rs.getInt("tipo"),
 						rs.getString("codigocliente"), rs.getString("nome"), rs.getString("email"),
 						rs.getString("telefone"));
 			}
@@ -72,7 +72,7 @@ public class ClienteDAO {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		return cliente;
+		return user1;
 	}
 
 }
