@@ -22,15 +22,15 @@ public class NotebookDAO {
 	}
 
 	
-	public static  Notebook inserir(int numeroNote,String serialNote, String modelo, String descricao, int estoque, double precoUnitario, String figura,
+	public static  Notebook inserir(String serialNote, String modelo, String descricao, int estoque, double precoUnitario, String figura,
 			String dataCadastro) {
 		Notebook notebook = null;
 		NotebookDAO noteDAO = new NotebookDAO();
 		try {
 
-			String sql = "insert into notebook " + "(numeroNote, serialNote,  modelo,  descricao, estoque, precoUnitario,  figura,\r\n" + 
+			String sql = "insert into notebook " + "( serialNote,  modelo,  descricao, estoque, precoUnitario,  figura,\r\n" + 
 					"				 dataCadastro) "
-					+ "values (?,?,?,?,?)";
+					+ "values (?,?,?,?,?,?,?)";
 
 			Conexao conex = new Conexao(noteDAO.url, noteDAO.driver, noteDAO.login, noteDAO.senha);
 
@@ -38,30 +38,31 @@ public class NotebookDAO {
 			 
 			 
 			PreparedStatement comando = con.prepareStatement(sql);
-			comando.setInt(1,numeroNote );
-			comando.setString(2,serialNote );
-			comando.setString(3,modelo );
-			comando.setString(4,descricao);
-			comando.setInt(5, estoque);
-			comando.setDouble(6, precoUnitario);
-			comando.setString(7,figura );
-			comando.setString(8,dataCadastro );
+			
+			comando.setString(1,serialNote );
+			comando.setString(2,modelo );
+			comando.setString(3,descricao);
+			comando.setInt(4, estoque);
+			comando.setDouble(5, precoUnitario);
+			comando.setString(6,figura );
+			comando.setString(7,dataCadastro );
 
 			comando.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		notebook = new Notebook(numeroNote, serialNote,  modelo,  descricao, estoque, precoUnitario,  figura,
+		notebook = new Notebook( serialNote,  modelo,  descricao, estoque, precoUnitario,  figura,
 				 dataCadastro);
 		return notebook;
 	}
 	public static Notebook[] buscarTodos(){
 		Notebook[] notebooks = null;
+		NotebookDAO noteDAO = new NotebookDAO();
 		 try {
 		 
 		 String sql = "Select * from notebook";
 		 
-		 Conexao conex = new Conexao ("jdbc:mysql://localhost:3306/18_conexaobd?useTimezone=true&serverTimezone=UTC", "com.mysql.cj.jdbc.Driver","root","1234");
+		 Conexao conex = new Conexao (noteDAO.url, noteDAO.driver, noteDAO.login, noteDAO.senha);
 		 Connection con = conex.obterConexao();
 		 Statement comando = con.createStatement();
 		 ResultSet rs = comando.executeQuery(sql);
@@ -69,7 +70,6 @@ public class NotebookDAO {
 		 int i = 0;
 		 while (rs.next()) {
 			 notebooks[i++] = new Notebook(
-		  rs.getInt("numeroNote"),
 		  rs.getString("serialNote"),
 		  rs.getString("modelo"),
 		  rs.getString("descricao"),
@@ -86,14 +86,16 @@ public class NotebookDAO {
 		  }
 		  return notebooks;
 		 }
-	public static Notebook excluir (int id) {
+	@SuppressWarnings("unused")
+	public static Notebook excluir (String id) {
 		Notebook notebook = null;
+		NotebookDAO noteDAO = new NotebookDAO();
 		try {
 			String sql = "delete from notebook where id = ?";
-			Conexao conex = new Conexao("jdbc:mysql://localhost:3306/18_conexaobd?useTimezone=true&serverTimezone=UTC", "com.mysql.cj.jdbc.Driver","root","1234"); 
+			Conexao conex = new Conexao(noteDAO.url, noteDAO.driver, noteDAO.login, noteDAO.senha); 
 			Connection con = conex.obterConexao();
 			PreparedStatement comando = con.prepareStatement(sql);
-			comando.setInt(1, id);
+			comando.setString(1, id);
 			comando.executeUpdate();
 			
 		}catch(Exception e) {
@@ -104,24 +106,25 @@ public class NotebookDAO {
 		
 		return notebook;
 	}
-	public static Notebook atualizar (int numeroNote,String serialNote, String modelo, String descricao, int estoque, double precoUnitario, String figura,
-			String dataCadastro, int id) {
+	public static Notebook atualizar ( String modelo, String descricao, int estoque, double precoUnitario, String figura,
+			String dataCadastro) {
 		Notebook notebook = null;
+		NotebookDAO noteDAO = new NotebookDAO();
 		try {
 			String sql = "update contato set mensagem = ? where id = ? ";
-			Conexao conex = new Conexao("jdbc:mysql://localhost:3306/18_conexaobd?useTimezone=true&serverTimezone=UTC","com.mysql.cj.jdbc.Driver","root","1234"); 
+			Conexao conex = new Conexao(noteDAO.url, noteDAO.driver, noteDAO.login, noteDAO.senha); 
 			Connection con = conex.obterConexao();
 			PreparedStatement comando = con.prepareStatement(sql);
 			
-			comando.setInt(1,numeroNote );
-			comando.setString(2,serialNote );
-			comando.setString(3,modelo );
-			comando.setString(4,descricao);
-			comando.setInt(5, estoque);
-			comando.setDouble(6, precoUnitario);
-			comando.setString(7,figura );
-			comando.setString(8,dataCadastro );
-			comando.setInt(9,id);
+			
+			
+			comando.setString(1,modelo );
+			comando.setString(2,descricao);
+			comando.setInt(3, estoque);
+			comando.setDouble(4, precoUnitario);
+			comando.setString(5,figura );
+			comando.setString(6,dataCadastro );
+			
 			comando.executeUpdate();
 		}catch(Exception e) {
 			System.out.println(e.getMessage());

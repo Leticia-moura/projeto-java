@@ -97,10 +97,10 @@ public String getSerialNote() {
 	}
 
 
-	public Notebook(int numeroNote,String serialNote, String modelo, String descricao, int estoque, double precoUnitario, String figura,
+	public Notebook(String serialNote, String modelo, String descricao, int estoque, double precoUnitario, String figura,
 			String dataCadastro) {
 		super();
-		this.numeroNote = numeroNote;
+		
 		this.serialNote = serialNote;
 		this.modelo = modelo;
 		this.descricao = descricao;
@@ -109,6 +109,9 @@ public String getSerialNote() {
 		this.figura = figura;
 		this.dataCadastro = dataCadastro;
 	}
+
+
+
 
 
 	@Override

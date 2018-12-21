@@ -109,8 +109,8 @@ public class Cliente extends Usuario implements IUsuario {
 	
 	@Override
 	 public boolean validarLogin (String login, String senha){
-		Cliente cliente = ClienteDAO.buscarPorLoginSenha(login, senha);
-		if(cliente != null){
+		Cliente user1 = ClienteDAO.buscarPorLoginSenha(login, senha);
+		if(user1 != null){
 		return true;
 		}
 		return false;

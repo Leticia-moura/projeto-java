@@ -7,6 +7,7 @@ import model.*;
 import model.DAO.ClienteDAO;
 import model.DAO.EnderecoDAO;
 import model.DAO.FuncionarioDAO;
+import model.DAO.NotebookDAO;
 import model.DAO.UsuarioDAO;
 import util.*;
 
@@ -15,19 +16,14 @@ public class InfoNote {
 
 	Usuario usuario;
 	Cliente user1;
-
 	Funcionario user2;
-
 	Notebook[] notebooks = new Notebook[10];
-
 	Pedido pedido;
-
 	boolean logado = false;
-
 	Configurador config;
 	Ajuda ajuda;
 
-	private static Funcionario funcionario = null;
+
 	private static final int login = 1;
 	private static final int cadastrar_usuario = 2;
 	private static final int buscar_notebook = 3;
@@ -45,6 +41,16 @@ public class InfoNote {
 		Locale.setDefault(new Locale(config.getIdioma(), config.getRegiao()));
 		ajuda = new Ajuda(config.getArquivoAjuda());
 
+		notebooks[0] = new Notebook( "1","Negativo N22BR", "CPU Intel Core 2 Duo, Memória 2 GB, HD 250 GB", 6, 1200.00,
+				"img\\n22br.jpg", "19/05/2011");
+		notebooks[1] = new Notebook("2", "Bell B55BR", "CPU Intel I3, Memória 4 GB, HD 500 GB", 3, 1800.00,
+				"img\\b55br.jpg", "20/05/2011");
+		notebooks[2] = new Notebook("3", "Pompaq P41BR", "CPU Intel I3, Memória 3 GB, HD 320 GB", 1, 1600.00,
+				"img\\p41br.jpg", "21/05/2011");
+		notebooks[3] = new Notebook("4", "CCF CR71CH", "CPU Intel Dual Core, Memória 2 GB, HD 160 GB", 5, 1100.00,
+				"img\\cr71ch.jpg", "10/06/2011");
+		notebooks[4] = new Notebook( "5","BradescoTech BD22BR", "CPU AMD Phenon II, Memória 4 GB, HD 500 GB", 2, 1900.00,
+				"img\\bd22br.jpg", "10/06/2011");
 	}
 
 	
@@ -58,7 +64,7 @@ public class InfoNote {
 				+ DateFormat.getTimeInstance().format(new Date()));
 
 		if (logado == true) {
-			System.out.println("Seja bem vindo, " + usuario);
+			System.out.println("Seja bem vindo, " + user1.getNomeInvertido());
 		}
 		System.out.println("=================================================");
 		System.out.println("1 - Login");
@@ -79,10 +85,13 @@ public class InfoNote {
 		login = teclado.lerTexto("Digite o login: ");
 		senha = teclado.lerTexto("Digite a senha: ");
 
-		usuario = ClienteDAO.buscarPorLoginSenha(login, senha);
+		user1 = ClienteDAO.buscarPorLoginSenha(login, senha);
 
-		if (usuario != null) {
-			logado = usuario.validarLogin(login, senha);
+		if (user1 != null) {
+			logado = user1.validarLogin(login, senha);
+		}else {
+				if (logado) {
+		
 					System.out.println("Login efetuado com sucesso.");
 			
 			} else {
@@ -111,16 +120,17 @@ public class InfoNote {
 				} while (!logado);
 			}
 		}
+	}
 	
 
 	public void efetuarLoginadm() {
 		String login, senha;
 		login = teclado.lerTexto("Digite o login: ");
 		senha = teclado.lerTexto("Digite a senha: ");
-		funcionario = FuncionarioDAO.buscarPorLoginSenha(login, senha);
+		user2 = FuncionarioDAO.buscarPorLoginSenha(login, senha);
 
-		if (funcionario != null) {
-			logado = funcionario.validarLogin(login, senha);
+		if (user2 != null) {
+			logado = user2.validarLogin(login, senha);
 		}else {
 			if (logado) {
 				System.out.println("Login efetuado com sucesso.");
@@ -136,6 +146,8 @@ public class InfoNote {
 	public void ajuda() {
 		System.out.println(ajuda.getTexto());
 	}
+	
+	
 	public void cadastrarUsuarioCliente() {
 
 		System.out.println("=================================================");
@@ -148,6 +160,7 @@ public class InfoNote {
 			senha = GerarSenha.gerarSenha();
 			System.out.println("Senha gerada: " + senha);
 		}
+		int tipo = 0;
 		String nome = teclado.lerTexto("Nome: ");
 		String email = teclado.lerTexto("E-mail: ");
 		String telefone = teclado.lerTexto("Telefone: ");
@@ -159,18 +172,17 @@ public class InfoNote {
 		String cidade = teclado.lerTexto("cidade: ");
 		String estado = teclado.lerTexto("estado: ");
 		String cep = teclado.lerTexto("cep: ");
-		int tipo = 0;
-
+		
 		usuario = UsuarioDAO.inserir(login, senha, tipo);
 		user1 = ClienteDAO.inserir(login, senha, tipo, codigoCliente, nome, email, telefone);
 		Endereco endereco = EnderecoDAO.inserir(logradouro, numero, complemento, bairro, cidade, estado, cep,
 				codigoCliente);
-		usuario = user1;
+		
 
 		System.out.println("=================================================");
 		System.out.println(" Usuário Cadastrado Com Sucesso. ");
 		System.out.println("=================================================");
-		System.out.println(usuario);
+		System.out.println(user1);
 		System.out.println(endereco);
 	}
 
@@ -189,7 +201,6 @@ public class InfoNote {
 		}
 		int tipo = 1;
 		user2 = new Funcionario(senha, login, tipo, matricula);
-		funcionario = user2;
 		System.out.println("=================================================");
 		System.out.println(" Usuário Cadastrado Com Sucesso. ");
 		System.out.println("=================================================");
@@ -292,12 +303,32 @@ public class InfoNote {
 
 
 	private void cadastrarNotebook() {
-		// TODO Auto-generated method stub
+		System.out.println("====================================");
+		System.out.println(" Cadastro de Notebook ");
+		System.out.println("====================================");
+		String serialNote = teclado.lerTexto("SeriaNote: ");
+		String modelo = teclado.lerTexto("Modelo: ");
+		String descricao = teclado.lerTexto("Descricao: ");
+		int estoque = teclado.lerInt("Estoque: ");
+		double precoUnitario = teclado.lerDouble("Preço Unitário: ");
+		String figura = teclado.lerTexto("Figura: ");
+		String dataCadastro = teclado.lerTexto("Data de Cadastro: ");
+		
+		Notebook notebook = NotebookDAO.inserir( serialNote,  modelo, descricao,  estoque,  precoUnitario, figura,
+				 dataCadastro );
+		System.out.println(notebook);
 		
 	}
 
 	private void mostrarNotebooks() {
-		// TODO Auto-generated method stub
+		Notebook[] notebook = NotebookDAO.buscarTodos();
+		for (int i = 0; i < notebook.length; i++) {
+			if (notebook[i] != null) {
+				System.out.println(notebook[i].getSerialNote() + "-----"
+						+ notebook[i].getModelo() + "-----" + notebook[i].getDescricao() + "-----"
+						+ notebook[i].getEstoque() + "-----" + notebook[i].getPrecoUnitario()	);
+			}
+		}
 		
 	}
 
@@ -307,7 +338,12 @@ public class InfoNote {
 	}
 
 	private void excluirNotebook() {
-		// TODO Auto-generated method stub
+		System.out.println("====================================");
+		System.out.println(" Excluir de Notebook ");
+		System.out.println("====================================");
+		String serialNote = teclado.lerTexto("Informe o SeriaNote do Notebook a ser excluido: ");
+		
+		Notebook notebook = NotebookDAO.excluir(serialNote);
 		
 	}
 
@@ -322,8 +358,7 @@ public class InfoNote {
 			switch (opcao) {
 			case login:
 
-				int tipoLogin = teclado
-						.lerInt("Qual seu tipo de Usuário?: " + "\n" + "1-Cliente" + " \n" + "2-Funcionário");
+				int tipoLogin = teclado.lerInt("Qual seu tipo de Usuário?: " + "\n" + "1-Cliente" + " \n" + "2-Funcionário");
 				if (tipoLogin == 1) {
 					info.efetuarLogin();
 					break;
